@@ -2,8 +2,8 @@
 <html lang="it">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Impostazioni</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Impostazioni Cellulare</title>
 <style>
 @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700&family=DM+Mono:wght@400;500&display=swap');
 * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -15,97 +15,80 @@
   --sub: #6b7280;
   --accent: #2563eb;
   --accent-light: #eff6ff;
-  --accent-hover: #1d4ed8;
   --danger: #ef4444;
   --danger-light: #fef2f2;
   --success: #10b981;
-  --warn: #f59e0b;
   --radius: 14px;
   --radius-sm: 8px;
   --shadow: 0 1px 3px rgba(0,0,0,0.06), 0 1px 2px rgba(0,0,0,0.04);
   --shadow-md: 0 4px 16px rgba(0,0,0,0.1);
-  --shadow-lg: 0 20px 60px rgba(0,0,0,0.15);
 }
-body { font-family: 'DM Sans', system-ui, sans-serif; background: var(--bg); color: var(--text); min-height: 100vh; }
+body { font-family: 'DM Sans', system-ui, sans-serif; background: var(--bg); color: var(--text); }
 #app { display: flex; min-height: 100vh; }
-#sidebar { width: 260px; background: var(--white); border-right: 1px solid var(--border); display: flex; flex-direction: column; position: fixed; top: 0; left: 0; height: 100vh; overflow-y: auto; z-index: 10; }
-.sidebar-header { display: flex; align-items: center; gap: 10px; padding: 20px 18px; border-bottom: 1px solid var(--border); font-size: 17px; font-weight: 700; letter-spacing: -0.3px; }
-.app-icon { font-size: 22px; }
+#sidebar { width: 260px; background: var(--white); border-right: 1px solid var(--border); position: fixed; top: 0; left: 0; height: 100vh; overflow-y: auto; z-index: 10; }
+.sidebar-header { display: flex; align-items: center; gap: 10px; padding: 20px 18px; border-bottom: 1px solid var(--border); font-size: 17px; font-weight: 700; }
 #nav-menu { padding: 10px; display: flex; flex-direction: column; gap: 2px; flex: 1; }
-.nav-item { display: flex; align-items: center; gap: 12px; padding: 11px 12px; border: none; background: transparent; border-radius: 10px; cursor: pointer; text-align: left; font-size: 14px; font-family: 'DM Sans', sans-serif; color: var(--text); transition: background 0.15s; width: 100%; }
+.nav-item { display: flex; align-items: center; gap: 12px; padding: 11px 12px; border: none; background: transparent; border-radius: 10px; cursor: pointer; text-align: left; font-size: 14px; width: 100%; }
 .nav-item:hover { background: var(--bg); }
 .nav-item.active { background: var(--accent-light); color: var(--accent); font-weight: 600; }
-.nav-icon { font-size: 18px; width: 24px; text-align: center; }
-.nav-label { flex: 1; }
+.nav-icon { font-size: 18px; width: 24px; }
 #main { flex: 1; margin-left: 260px; display: flex; flex-direction: column; min-height: 100vh; }
 #topbar { background: var(--white); border-bottom: 1px solid var(--border); padding: 14px 24px; display: flex; align-items: center; gap: 14px; position: sticky; top: 0; z-index: 5; }
-#back-btn { display: none; align-items: center; justify-content: center; width: 34px; height: 34px; border: 1px solid var(--border); border-radius: 8px; background: var(--white); font-size: 22px; cursor: pointer; color: var(--accent); font-family: 'DM Sans', sans-serif; }
-#back-btn:hover { background: var(--bg); }
-#page-title { font-size: 19px; font-weight: 700; letter-spacing: -0.4px; flex: 1; }
+#back-btn { display: none; align-items: center; justify-content: center; width: 34px; height: 34px; border: 1px solid var(--border); border-radius: 8px; background: var(--white); font-size: 22px; cursor: pointer; }
+#page-title { font-size: 19px; font-weight: 700; flex: 1; }
 #content { padding: 24px; max-width: 760px; }
 .home-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(155px, 1fr)); gap: 12px; }
-.home-card { background: var(--white); border: 1px solid var(--border); border-radius: var(--radius); padding: 20px 16px; display: flex; flex-direction: column; align-items: flex-start; gap: 10px; cursor: pointer; transition: box-shadow 0.15s, transform 0.1s; box-shadow: var(--shadow); }
+.home-card { background: var(--white); border: 1px solid var(--border); border-radius: var(--radius); padding: 20px 16px; cursor: pointer; transition: box-shadow 0.15s; box-shadow: var(--shadow); }
 .home-card:hover { box-shadow: var(--shadow-md); transform: translateY(-2px); }
-.home-card-icon { font-size: 28px; }
+.home-card-icon { font-size: 28px; display: block; margin-bottom: 10px; }
 .home-card-label { font-size: 13px; font-weight: 600; }
-.setting-row { background: var(--white); border: 1px solid var(--border); border-radius: var(--radius); padding: 15px 18px; display: flex; align-items: center; justify-content: space-between; margin-bottom: 10px; gap: 16px; box-shadow: var(--shadow); }
-.setting-row--column { flex-direction: column; align-items: stretch; gap: 12px; }
+.setting-row { background: var(--white); border: 1px solid var(--border); border-radius: var(--radius); padding: 15px 18px; display: flex; align-items: center; justify-content: space-between; margin-bottom: 10px; gap: 16px; }
 .setting-text { display: flex; flex-direction: column; gap: 3px; flex: 1; }
 .setting-label { font-size: 15px; font-weight: 500; }
 .setting-sub { font-size: 12px; color: var(--sub); }
-.slider-header { flex-direction: row; justify-content: space-between; align-items: center; }
-.slider-value { font-size: 13px; font-weight: 600; color: var(--accent); }
-.slider-input { width: 100%; height: 4px; border-radius: 4px; accent-color: var(--accent); cursor: pointer; }
-.setting-select { border: 1px solid var(--border); border-radius: 8px; padding: 8px 10px; font-size: 14px; font-family: 'DM Sans', sans-serif; background: var(--bg); color: var(--text); cursor: pointer; outline: none; min-width: 160px; }
-.toggle { position: relative; display: inline-block; width: 50px; height: 28px; flex-shrink: 0; }
+.slider-header { display: flex; justify-content: space-between; margin-bottom: 12px; }
+.slider-input { width: 100%; height: 4px; accent-color: var(--accent); cursor: pointer; }
+.setting-select { border: 1px solid var(--border); border-radius: 8px; padding: 8px 10px; font-size: 14px; background: var(--bg); cursor: pointer; min-width: 160px; }
+.toggle { position: relative; display: inline-block; width: 50px; height: 28px; }
 .toggle input { opacity: 0; width: 0; height: 0; }
 .toggle-track { position: absolute; inset: 0; background: #d1d5db; border-radius: 28px; transition: background 0.2s; cursor: pointer; }
 .toggle input:checked + .toggle-track { background: var(--accent); }
-.toggle-thumb { position: absolute; top: 3px; left: 3px; width: 22px; height: 22px; background: white; border-radius: 50%; box-shadow: 0 1px 4px rgba(0,0,0,0.2); transition: transform 0.2s; }
+.toggle-thumb { position: absolute; top: 3px; left: 3px; width: 22px; height: 22px; background: white; border-radius: 50%; transition: transform 0.2s; }
 .toggle input:checked + .toggle-track .toggle-thumb { transform: translateX(22px); }
-.profiles-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 16px; gap: 12px; }
-.profiles-title { font-size: 13px; font-weight: 600; color: var(--sub); text-transform: uppercase; letter-spacing: 0.8px; }
-.profiles-list { display: flex; flex-direction: column; gap: 10px; }
-.profile-card { background: var(--white); border: 1px solid var(--border); border-radius: var(--radius); padding: 18px 20px; display: flex; align-items: center; gap: 16px; box-shadow: var(--shadow); transition: box-shadow 0.15s; position: relative; }
+.profiles-header { display: flex; justify-content: space-between; margin-bottom: 16px; }
+.profiles-title { font-size: 13px; font-weight: 600; color: var(--sub); text-transform: uppercase; }
+.profile-card { background: var(--white); border: 1px solid var(--border); border-radius: var(--radius); padding: 18px 20px; display: flex; align-items: center; gap: 16px; margin-bottom: 10px; }
 .profile-card.active-profile { border-color: var(--accent); background: var(--accent-light); }
-.profile-avatar { width: 54px; height: 54px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 22px; font-weight: 700; color: white; flex-shrink: 0; font-family: 'DM Mono', monospace; }
-.profile-info { flex: 1; min-width: 0; }
+.profile-avatar { width: 54px; height: 54px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 22px; font-weight: 700; color: white; flex-shrink: 0; }
+.profile-info { flex: 1; }
 .profile-name { font-size: 16px; font-weight: 700; }
-.profile-email, .profile-phone { font-size: 12px; color: var(--sub); margin-top: 2px; }
-.profile-badge { font-size: 10px; font-weight: 700; background: var(--accent); color: white; padding: 2px 8px; border-radius: 20px; text-transform: uppercase; }
-.profile-actions { display: flex; gap: 6px; }
-.btn { display: inline-flex; align-items: center; gap: 6px; padding: 9px 16px; border-radius: var(--radius-sm); border: none; cursor: pointer; font-size: 13px; font-weight: 600; font-family: 'DM Sans', sans-serif; transition: all 0.15s; }
+.profile-email { font-size: 12px; color: var(--sub); }
+.profile-badge { font-size: 10px; font-weight: 700; background: var(--accent); color: white; padding: 2px 8px; border-radius: 20px; margin-left: 8px; }
+.btn { display: inline-flex; align-items: center; gap: 6px; padding: 9px 16px; border-radius: var(--radius-sm); border: none; cursor: pointer; font-size: 13px; font-weight: 600; }
 .btn-primary { background: var(--accent); color: white; }
 .btn-secondary { background: var(--bg); color: var(--text); border: 1px solid var(--border); }
-.btn-danger { background: var(--danger-light); color: var(--danger); border: 1px solid #fecaca; }
-.btn-ghost { background: transparent; color: var(--sub); }
-.btn-xs { padding: 5px 9px; font-size: 11px; border-radius: 6px; }
-.modal-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.45); backdrop-filter: blur(4px); z-index: 100; display: flex; align-items: center; justify-content: center; padding: 20px; }
-.modal { background: var(--white); border-radius: 18px; width: 100%; max-width: 480px; overflow: hidden; box-shadow: var(--shadow-lg); }
-.modal-header { padding: 22px 24px 18px; border-bottom: 1px solid var(--border); display: flex; align-items: center; justify-content: space-between; }
+.btn-danger { background: var(--danger-light); color: var(--danger); }
+.btn-xs { padding: 5px 9px; font-size: 11px; }
+.modal-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.45); backdrop-filter: blur(4px); z-index: 100; display: flex; align-items: center; justify-content: center; }
+.modal { background: var(--white); border-radius: 18px; width: 100%; max-width: 480px; overflow: hidden; }
+.modal-header { padding: 22px 24px; border-bottom: 1px solid var(--border); display: flex; justify-content: space-between; }
 .modal-body { padding: 24px; }
 .modal-footer { padding: 16px 24px; border-top: 1px solid var(--border); display: flex; justify-content: flex-end; gap: 10px; background: var(--bg); }
 .form-group { margin-bottom: 18px; }
-.form-label { display: block; font-size: 13px; font-weight: 600; color: var(--sub); margin-bottom: 7px; text-transform: uppercase; }
-.form-input { width: 100%; padding: 11px 14px; border: 1.5px solid var(--border); border-radius: 10px; font-size: 14px; outline: none; }
+.form-label { display: block; font-size: 13px; font-weight: 600; margin-bottom: 7px; }
+.form-input { width: 100%; padding: 11px 14px; border: 1.5px solid var(--border); border-radius: 10px; font-size: 14px; }
 .battery-card { background: var(--white); border: 1px solid var(--border); border-radius: var(--radius); padding: 20px; display: flex; align-items: center; gap: 20px; margin-bottom: 10px; }
-.battery-body { width: 80px; height: 36px; border: 2.5px solid #555; border-radius: 6px; padding: 3px; }
+.battery-body { width: 80px; height: 36px; border: 2.5px solid #555; border-radius: 6px; padding: 3px; display: flex; align-items: center; }
 .battery-fill { height: 100%; border-radius: 3px; }
-.battery-cap { width: 5px; height: 14px; background: #555; border-radius: 0 3px 3px 0; }
 .battery-pct { font-size: 22px; font-weight: 700; }
 .storage-card { background: var(--white); border: 1px solid var(--border); border-radius: var(--radius); padding: 20px; margin-bottom: 10px; }
-.storage-numbers { display: flex; justify-content: space-between; margin-bottom: 12px; font-size: 14px; }
-.storage-bar { display: flex; height: 14px; border-radius: 8px; overflow: hidden; background: var(--bg); margin-bottom: 14px; }
+.storage-bar { display: flex; height: 14px; border-radius: 8px; overflow: hidden; background: var(--bg); margin: 12px 0; }
 .storage-bar-seg { height: 100%; }
-.storage-legend { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
-.storage-legend-item { display: flex; align-items: center; gap: 6px; font-size: 13px; color: var(--sub); }
-.legend-dot { width: 10px; height: 10px; border-radius: 50%; }
-.app-row { background: var(--white); border: 1px solid var(--border); border-radius: var(--radius); padding: 14px 18px; display: flex; align-items: center; justify-content: space-between; margin-bottom: 8px; }
-.info-row { background: var(--white); border: 1px solid var(--border); border-radius: var(--radius); padding: 14px 18px; display: flex; justify-content: space-between; margin-bottom: 8px; font-size: 14px; }
+.info-row { background: var(--white); border: 1px solid var(--border); border-radius: var(--radius); padding: 14px 18px; display: flex; justify-content: space-between; margin-bottom: 8px; }
 .info-label { color: var(--sub); }
-.info-value { font-weight: 500; font-family: 'DM Mono', monospace; }
-.toast { position: fixed; bottom: 28px; left: 50%; transform: translateX(-50%) translateY(20px); background: #111827; color: white; padding: 12px 22px; border-radius: 40px; font-size: 14px; opacity: 0; transition: all 0.3s; z-index: 999; pointer-events: none; }
-.toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
+.toast { position: fixed; bottom: 28px; left: 50%; transform: translateX(-50%); background: #111827; color: white; padding: 12px 22px; border-radius: 40px; font-size: 14px; opacity: 0; transition: opacity 0.3s; z-index: 999; }
+.toast.show { opacity: 1; }
+.loading { text-align: center; padding: 40px; color: var(--sub); }
 @media (max-width: 700px) { #sidebar { display: none; } #main { margin-left: 0; } }
 </style>
 </head>
@@ -117,10 +100,10 @@ body { font-family: 'DM Sans', system-ui, sans-serif; background: var(--bg); col
   </div>
   <div id="main">
     <div id="topbar">
-      <button id="back-btn" onclick="goBack()">‹</button>
+      <button id="back-btn" onclick="goBack()">←</button>
       <h1 id="page-title">Impostazioni</h1>
     </div>
-    <div id="content"></div>
+    <div id="content"><div class="loading">⏳ Caricamento...</div></div>
   </div>
 </div>
 <div id="modal-container"></div>
@@ -128,7 +111,7 @@ body { font-family: 'DM Sans', system-ui, sans-serif; background: var(--bg); col
 
 <script type="module">
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
-import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-analytics.js";
+import { getFirestore, collection, getDocs, addDoc, deleteDoc, doc, setDoc } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
 
 const firebaseConfig = {
   apiKey: "AIzaSyCsjC_CajNEfxceYohu5xGc4WbwQUrVkeA",
@@ -141,69 +124,84 @@ const firebaseConfig = {
 };
 
 const app = initializeApp(firebaseConfig);
-const analytics = getAnalytics(app);
+const db = getFirestore(app);
 
-const AVATAR_COLORS = ["#2563eb","#7c3aed","#db2777","#ea580c","#16a34a","#0891b2","#9333ea","#dc2626","#059669","#d97706"];
-let profiles = [
-  { id: "p1", name: "Mario Rossi", email: "mario.rossi@email.com", phone: "+39 333 123 4567", role: "Amministratore", color: "#2563eb", active: true },
-  { id: "p2", name: "Giulia Bianchi", email: "giulia.b@email.com", phone: "+39 347 987 6543", role: "Utente", color: "#db2777", active: false }
-];
-
-const settingsData = {
-  sections: [
-    { id: "profilo", label: "Profilo", icon: "👤" },
-    { id: "rete", label: "Rete e Internet", icon: "📶", items: [
-      { type: "toggle", id: "wifi", label: "Wi-Fi", sublabel: "HomeNetwork_5G", value: true },
-      { type: "toggle", id: "dati", label: "Dati mobili", value: true },
-      { type: "toggle", id: "bluetooth", label: "Bluetooth", value: false },
-      { type: "toggle", id: "aereo", label: "Modalità aereo", value: false }
-    ]},
-    { id: "display", label: "Display e luminosità", icon: "☀️", items: [
-      { type: "slider", id: "lum", label: "Luminosità", min: 0, max: 100, value: 70, unit: "%" },
-      { type: "toggle", id: "auto-lum", label: "Luminosità automatica", value: true },
-      { type: "select", id: "timeout", label: "Spegnimento", value: "30", options: [{value:"15", label:"15s"},{value:"30", label:"30s"},{value:"60", label:"1m"}]}
-    ]},
-    { id: "suono", label: "Suono e vibrazione", icon: "🔊", items: [
-      { type: "slider", id: "vol", label: "Volume suoneria", min: 0, max: 100, value: 80, unit: "%" },
-      { type: "toggle", id: "vibra", label: "Vibrazione", value: true }
-    ]},
-    { id: "notifiche", label: "Notifiche", icon: "🔔", items: [
-      { type: "toggle", id: "notif-on", label: "Abilita notifiche", value: true },
-      { type: "toggle", id: "badge", label: "Badge icone", value: true }
-    ]},
-    { id: "batteria", label: "Batteria", icon: "🔋", items: [
-      { type: "battery-info", level: 78, charging: false },
-      { type: "toggle", id: "risparmio", label: "Risparmio energetico", value: false }
-    ]},
-    { id: "archiviazione", label: "Archiviazione", icon: "💾", items: [
-      { type: "storage-info", total: 128, used: 74, breakdown: [{label:"App", value:28, color:"#2563eb"},{label:"Foto", value:22, color:"#ef4444"},{label:"Sistema", value:24, color:"#e2e5ea"}]}
-    ]},
-    { id: "privacy", label: "Privacy e sicurezza", icon: "🔒", items: [
-      { type: "toggle", id: "gps", label: "Posizione", value: true },
-      { type: "toggle", id: "impronta", label: "Impronta digitale", value: true }
-    ]},
-    { id: "app", label: "Applicazioni", icon: "📱", items: [
-      { type: "app-list", apps: [{name:"WhatsApp", size:"180MB"},{name:"Instagram", size:"245MB"}]}
-    ]},
-    { id: "lingua", label: "Lingua e tastiera", icon: "🌐", items: [
-      { type: "select", id: "lang", label: "Lingua", value: "it", options: [{value:"it", label:"Italiano"},{value:"en", label:"English"}]}
-    ]},
-    { id: "accessibilita", label: "Accessibilità", icon: "♿", items: [
-      { type: "toggle", id: "talk", label: "TalkBack", value: false }
-    ]},
-    { id: "info", label: "Info dispositivo", icon: "ℹ️", items: [
-      { type: "info-list", infos: [{label:"Modello", value:"Galaxy S24"},{label:"Android", value:"14"},{label:"IMEI", value:"352 000 000"}]}
-    ]}
-  ]
-};
-
-const state = {};
+let profiles = [];
 let history = [];
 
-window.showToast = (m) => {
-  const t = document.getElementById("toast");
-  t.textContent = m; t.classList.add("show");
-  setTimeout(() => t.classList.remove("show"), 2000);
+const AVATAR_COLORS = ["#2563eb","#7c3aed","#db2777","#ea580c","#16a34a","#0891b2","#9333ea","#dc2626"];
+
+const sections = [
+  { id: "profilo", label: "Profilo", icon: "👤" },
+  { id: "rete", label: "Rete e Internet", icon: "📶" },
+  { id: "display", label: "Display", icon: "☀️" },
+  { id: "suono", label: "Suono", icon: "🔊" },
+  { id: "batteria", label: "Batteria", icon: "🔋" },
+  { id: "archiviazione", label: "Archiviazione", icon: "💾" },
+  { id: "privacy", label: "Privacy", icon: "🔒" },
+  { id: "info", label: "Info dispositivo", icon: "ℹ️" }
+];
+
+async function loadProfiles() {
+  try {
+    const querySnapshot = await getDocs(collection(db, "profili"));
+    profiles = [];
+    querySnapshot.forEach((doc) => {
+      const data = doc.data();
+      profiles.push({ 
+        id: doc.id, 
+        name: data.name || data.nome || "Senza nome",
+        email: data.email || "",
+        color: data.color || AVATAR_COLORS[0],
+        active: data.active === true
+      });
+    });
+    
+    if (profiles.length === 0) {
+      const defaultProfile = { name: "Mario Rossi", email: "mario@email.com", color: "#2563eb", active: true };
+      const docRef = await addDoc(collection(db, "profili"), defaultProfile);
+      profiles.push({ id: docRef.id, ...defaultProfile });
+    }
+    
+    console.log("✅ Profili caricati:", profiles.length);
+    return profiles;
+  } catch (error) {
+    console.error("❌ Errore caricamento profili:", error);
+    showToast("Errore connessione Firebase");
+    return [];
+  }
+}
+
+async function saveProfile(profile) {
+  try {
+    const profileRef = doc(db, "profili", profile.id);
+    await setDoc(profileRef, {
+      name: profile.name,
+      email: profile.email,
+      color: profile.color,
+      active: profile.active || false
+    });
+    showToast("✅ Profilo salvato!");
+  } catch (error) {
+    console.error("Errore salvataggio:", error);
+    showToast("Errore salvataggio");
+  }
+}
+
+async function deleteProfileFromFirebase(id) {
+  try {
+    await deleteDoc(doc(db, "profili", id));
+    showToast("🗑️ Profilo eliminato");
+  } catch (error) {
+    console.error("Errore eliminazione:", error);
+  }
+}
+
+window.showToast = (msg) => {
+  const toast = document.getElementById("toast");
+  toast.textContent = msg;
+  toast.classList.add("show");
+  setTimeout(() => toast.classList.remove("show"), 2000);
 };
 
 window.goBack = () => {
@@ -212,129 +210,169 @@ window.goBack = () => {
 };
 
 window.openSection = (id) => {
-  if(id === "profilo") { renderProfiles(); return; }
-  const sec = settingsData.sections.find(s => s.id === id);
-  document.getElementById("page-title").textContent = sec.label;
+  if (id === "profilo") {
+    renderProfiles();
+    return;
+  }
+  const section = sections.find(s => s.id === id);
+  if (section) document.getElementById("page-title").textContent = section.label;
   document.getElementById("back-btn").style.display = "flex";
   const content = document.getElementById("content");
-  content.innerHTML = "";
-  sec.items.forEach(i => content.appendChild(renderItem(i)));
+  content.innerHTML = renderSectionContent(id);
 };
 
-function renderItem(item) {
-  const row = document.createElement("div");
-  if(item.type === "toggle") {
-    row.className = "setting-row";
-    row.innerHTML = `<div class="setting-text"><span class="setting-label">${item.label}</span></div>
-      <label class="toggle"><input type="checkbox" ${item.value ? "checked" : ""}><span class="toggle-track"><span class="toggle-thumb"></span></span></label>`;
-  } else if(item.type === "slider") {
-    row.className = "setting-row setting-row--column";
-    row.innerHTML = `<div class="slider-header"><span class="setting-label">${item.label}</span><span class="slider-value">${item.value}${item.unit}</span></div>
-      <input type="range" class="slider-input" min="${item.min}" max="${item.max}" value="${item.value}">`;
-  } else if(item.type === "battery-info") {
-    row.className = "battery-card";
-    row.innerHTML = `<div class="battery-body"><div class="battery-fill" style="width:${item.level}%; background:#10b981"></div></div><span class="battery-pct">${item.level}%</span>`;
-  } else if(item.type === "storage-info") {
-    row.className = "storage-card";
-    let segs = item.breakdown.map(s => `<div class="storage-bar-seg" style="width:${(s.value/item.total)*100}%; background:${s.color}"></div>`).join("");
-    row.innerHTML = `<div class="storage-numbers"><span>Usati: ${item.used}GB</span><span>Totale: ${item.total}GB</span></div><div class="storage-bar">${segs}</div>`;
-  } else if(item.type === "app-list") {
-    const cont = document.createElement("div");
-    item.apps.forEach(a => {
-      const r = document.createElement("div"); r.className = "app-row";
-      r.innerHTML = `<div>${a.name}</div><div style="color:var(--sub); font-size:12px">${a.size}</div>`;
-      cont.appendChild(r);
-    });
-    return cont;
-  } else if(item.type === "info-list") {
-    const cont = document.createElement("div");
-    item.infos.forEach(i => {
-      const r = document.createElement("div"); r.className = "info-row";
-      r.innerHTML = `<span class="info-label">${i.label}</span><span class="info-value">${i.value}</span>`;
-      cont.appendChild(r);
-    });
-    return cont;
-  } else if(item.type === "select") {
-    row.className = "setting-row";
-    let opts = item.options.map(o => `<option value="${o.value}">${o.label}</option>`).join("");
-    row.innerHTML = `<span class="setting-label">${item.label}</span><select class="setting-select">${opts}</select>`;
+function renderSectionContent(id) {
+  if (id === "rete") {
+    return `
+      <div class="setting-row"><div class="setting-text"><span class="setting-label">Wi-Fi</span><span class="setting-sub">HomeNetwork</span></div><label class="toggle"><input type="checkbox" checked><span class="toggle-track"><span class="toggle-thumb"></span></span></label></div>
+      <div class="setting-row"><div class="setting-text"><span class="setting-label">Dati mobili</span></div><label class="toggle"><input type="checkbox" checked><span class="toggle-track"><span class="toggle-thumb"></span></span></label></div>
+      <div class="setting-row"><div class="setting-text"><span class="setting-label">Bluetooth</span></div><label class="toggle"><input type="checkbox"><span class="toggle-track"><span class="toggle-thumb"></span></span></label></div>
+      <div class="setting-row"><div class="setting-text"><span class="setting-label">Modalità aereo</span></div><label class="toggle"><input type="checkbox"><span class="toggle-track"><span class="toggle-thumb"></span></span></label></div>`;
   }
-  return row;
+  if (id === "display") {
+    return `
+      <div class="setting-row setting-row--column"><div class="slider-header"><span class="setting-label">Luminosità</span><span class="slider-value">70%</span></div><input type="range" class="slider-input" min="0" max="100" value="70"></div>
+      <div class="setting-row"><div class="setting-text"><span class="setting-label">Luminosità automatica</span></div><label class="toggle"><input type="checkbox" checked><span class="toggle-track"><span class="toggle-thumb"></span></span></label></div>
+      <div class="setting-row"><span class="setting-label">Spegnimento schermo</span><select class="setting-select"><option>30 secondi</option><option>1 minuto</option></select></div>`;
+  }
+  if (id === "suono") {
+    return `
+      <div class="setting-row setting-row--column"><div class="slider-header"><span class="setting-label">Volume</span><span class="slider-value">80%</span></div><input type="range" class="slider-input" min="0" max="100" value="80"></div>
+      <div class="setting-row"><div class="setting-text"><span class="setting-label">Vibrazione</span></div><label class="toggle"><input type="checkbox" checked><span class="toggle-track"><span class="toggle-thumb"></span></span></label></div>`;
+  }
+  if (id === "batteria") {
+    return `<div class="battery-card"><div class="battery-body"><div class="battery-fill" style="width:78%; background:#10b981; height:100%; border-radius:3px;"></div></div><span class="battery-pct">78%</span></div>`;
+  }
+  if (id === "archiviazione") {
+    return `<div class="storage-card"><div class="storage-bar"><div class="storage-bar-seg" style="width:22%; background:#2563eb"></div><div class="storage-bar-seg" style="width:17%; background:#ef4444"></div><div class="storage-bar-seg" style="width:19%; background:#e2e5ea"></div></div><div>Usati: 74GB / 128GB</div></div>`;
+  }
+  if (id === "privacy") {
+    return `
+      <div class="setting-row"><div class="setting-text"><span class="setting-label">Posizione</span></div><label class="toggle"><input type="checkbox" checked><span class="toggle-track"><span class="toggle-thumb"></span></span></label></div>
+      <div class="setting-row"><div class="setting-text"><span class="setting-label">Impronta digitale</span></div><label class="toggle"><input type="checkbox"><span class="toggle-track"><span class="toggle-thumb"></span></span></label></div>`;
+  }
+  if (id === "info") {
+    return `<div class="info-row"><span class="info-label">Modello</span><span>Galaxy S24</span></div>
+            <div class="info-row"><span class="info-label">Android</span><span>14</span></div>
+            <div class="info-row"><span class="info-label">IMEI</span><span>352000000123456</span></div>`;
+  }
+  return "<div>Sezione in costruzione</div>";
 }
 
-window.renderProfiles = () => {
+async function renderProfiles() {
   document.getElementById("page-title").textContent = "Gestione Profili";
   document.getElementById("back-btn").style.display = "flex";
   const content = document.getElementById("content");
   content.innerHTML = `
-    <div class="profiles-header">
-      <span class="profiles-title">Account</span>
-      <button class="btn btn-primary btn-sm" onclick="showAddProfileModal()">+ Aggiungi</button>
-    </div>
-    <div class="profiles-list" id="profiles-list"></div>`;
-  updateProfileList();
-};
-
-function updateProfileList() {
-  const list = document.getElementById("profiles-list");
-  if(!list) return;
-  list.innerHTML = "";
-  profiles.forEach(p => {
-    const card = document.createElement("div");
-    card.className = `profile-card ${p.active ? 'active-profile' : ''}`;
-    card.innerHTML = `
-      <div class="profile-avatar" style="background:${p.color}">${p.name[0]}</div>
-      <div class="profile-info">
-        <div class="profile-name">${p.name} ${p.active ? '<span class="profile-badge">Attivo</span>' : ''}</div>
-        <div class="profile-email">${p.email}</div>
-      </div>
-      <div class="profile-actions">
-        ${!p.active ? `<button class="btn btn-xs btn-secondary" onclick="setActiveProfile('${p.id}')">Usa</button>` : ''}
-        <button class="btn btn-xs btn-danger" onclick="deleteProfile('${p.id}')">Elimina</button>
-      </div>`;
-    list.appendChild(card);
-  });
+    <div class="profiles-header"><span class="profiles-title">Account</span><button class="btn btn-primary" onclick="window.showAddModal()">+ Aggiungi</button></div>
+    <div id="profiles-list"><div class="loading">⏳ Caricamento...</div></div>`;
+  await updateProfilesList();
 }
 
-window.setActiveProfile = (id) => {
-  profiles.forEach(p => p.active = (p.id === id));
-  window.showToast("Profilo attivato");
-  updateProfileList();
+async function updateProfilesList() {
+  const container = document.getElementById("profiles-list");
+  if (!container) return;
+  
+  await loadProfiles();
+  
+  if (profiles.length === 0) {
+    container.innerHTML = '<div class="loading">📭 Nessun profilo. Aggiungine uno!</div>';
+    return;
+  }
+  
+  container.innerHTML = profiles.map(p => {
+    const firstChar = p.name && p.name.length > 0 ? p.name.charAt(0).toUpperCase() : "?";
+    return `
+    <div class="profile-card ${p.active ? 'active-profile' : ''}">
+      <div class="profile-avatar" style="background:${p.color}">${firstChar}</div>
+      <div class="profile-info">
+        <div class="profile-name">${p.name || "Senza nome"} ${p.active ? '<span class="profile-badge">Attivo</span>' : ''}</div>
+        <div class="profile-email">${p.email || ""}</div>
+      </div>
+      <div class="profile-actions">
+        ${!p.active ? `<button class="btn btn-xs btn-secondary" onclick="window.setActive('${p.id}')">Usa</button>` : ''}
+        <button class="btn btn-xs btn-danger" onclick="window.deleteProfile('${p.id}')">Elimina</button>
+      </div>
+    </div>`;
+  }).join("");
+}
+
+window.setActive = async (id) => {
+  for (let p of profiles) {
+    p.active = (p.id === id);
+    await saveProfile(p);
+  }
+  showToast("✅ Profilo attivato");
+  await updateProfilesList();
 };
 
-window.deleteProfile = (id) => {
-  if(profiles.length === 1) return window.showToast("Impossibile eliminare l'ultimo profilo");
-  profiles = profiles.filter(p => p.id !== id);
-  updateProfileList();
+window.deleteProfile = async (id) => {
+  if (profiles.length === 1) {
+    showToast("⚠️ Non puoi eliminare l'ultimo profilo");
+    return;
+  }
+  const toDelete = profiles.find(p => p.id === id);
+  if (toDelete?.active) {
+    showToast("⚠️ Non puoi eliminare il profilo attivo");
+    return;
+  }
+  await deleteProfileFromFirebase(id);
+  await updateProfilesList();
 };
 
-window.showAddProfileModal = () => {
+window.showAddModal = () => {
   const modal = document.createElement("div");
   modal.className = "modal-overlay";
   modal.innerHTML = `
     <div class="modal">
-      <div class="modal-header"><span style="font-weight:700">Nuovo Profilo</span><button onclick="closeModal()">×</button></div>
+      <div class="modal-header"><span style="font-weight:700">Nuovo Profilo</span><button onclick="this.closest('.modal-overlay').remove()" style="background:none;border:none;font-size:24px;cursor:pointer">×</button></div>
       <div class="modal-body">
-        <div class="form-group"><label class="form-label">Nome</label><input type="text" id="p-name" class="form-input"></div>
-        <div class="form-group"><label class="form-label">Email</label><input type="email" id="p-email" class="form-input"></div>
+        <div class="form-group"><label class="form-label">Nome</label><input type="text" id="newName" class="form-input" placeholder="Mario Rossi"></div>
+        <div class="form-group"><label class="form-label">Email</label><input type="email" id="newEmail" class="form-input" placeholder="email@example.com"></div>
       </div>
       <div class="modal-footer">
-        <button class="btn btn-secondary" onclick="closeModal()">Annulla</button>
-        <button class="btn btn-primary" onclick="saveProfile()">Salva</button>
+        <button class="btn btn-secondary" onclick="this.closest('.modal-overlay').remove()">Annulla</button>
+        <button class="btn btn-primary" onclick="window.saveNewProfile()">Salva</button>
       </div>
     </div>`;
   document.getElementById("modal-container").appendChild(modal);
 };
 
-window.closeModal = () => document.getElementById("modal-container").innerHTML = "";
-
-window.saveProfile = () => {
-  const n = document.getElementById("p-name").value;
-  const e = document.getElementById("p-email").value;
-  if(!n || !e) return;
-  profiles.push({ id: Date.now().toString(), name: n, email: e, color: AVATAR_COLORS[Math.floor(Math.random()*AVATAR_COLORS.length)], active: false });
-  closeModal();
-  updateProfileList();
+window.saveNewProfile = async () => {
+  const nameInput = document.getElementById("newName");
+  const emailInput = document.getElementById("newEmail");
+  
+  if (!nameInput || !emailInput) {
+    showToast("Errore: campi non trovati");
+    return;
+  }
+  
+  const name = nameInput.value.trim();
+  const email = emailInput.value.trim();
+  
+  if (!name || !email) {
+    showToast("❌ Compila tutti i campi");
+    return;
+  }
+  
+  const newProfile = {
+    name: name,
+    email: email,
+    color: AVATAR_COLORS[Math.floor(Math.random() * AVATAR_COLORS.length)],
+    active: false
+  };
+  
+  try {
+    const docRef = await addDoc(collection(db, "profili"), newProfile);
+    profiles.push({ id: docRef.id, ...newProfile });
+    const modal = document.querySelector(".modal-overlay");
+    if (modal) modal.remove();
+    await updateProfilesList();
+    showToast("✅ Profilo aggiunto con successo!");
+  } catch (error) {
+    console.error("Errore:", error);
+    showToast("❌ Errore durante il salvataggio: " + error.message);
+  }
 };
 
 window.renderHome = () => {
@@ -343,26 +381,34 @@ window.renderHome = () => {
   const content = document.getElementById("content");
   content.innerHTML = `<div class="home-grid"></div>`;
   const grid = content.querySelector(".home-grid");
-  settingsData.sections.forEach(s => {
-    const c = document.createElement("div");
-    c.className = "home-card";
-    c.innerHTML = `<span class="home-card-icon">${s.icon}</span><span class="home-card-label">${s.label}</span>`;
-    c.onclick = () => window.openSection(s.id);
-    grid.appendChild(c);
+  sections.forEach(s => {
+    const card = document.createElement("div");
+    card.className = "home-card";
+    card.innerHTML = `<span class="home-card-icon">${s.icon}</span><span class="home-card-label">${s.label}</span>`;
+    card.onclick = () => window.openSection(s.id);
+    grid.appendChild(card);
   });
 };
 
-function init() {
+async function init() {
   const nav = document.getElementById("nav-menu");
-  settingsData.sections.forEach(s => {
-    const b = document.createElement("button");
-    b.className = "nav-item";
-    b.innerHTML = `<span class="nav-icon">${s.icon}</span><span class="nav-label">${s.label}</span>`;
-    b.onclick = () => window.openSection(s.id);
-    nav.appendChild(b);
+  sections.forEach(s => {
+    const btn = document.createElement("button");
+    btn.className = "nav-item";
+    btn.innerHTML = `<span class="nav-icon">${s.icon}</span><span class="nav-label">${s.label}</span>`;
+    btn.onclick = () => window.openSection(s.id);
+    nav.appendChild(btn);
   });
-  window.renderHome();
+  
+  await loadProfiles();
+  renderHome();
+  showToast("✅ Firebase connesso!");
 }
+
+window.saveNewProfile = window.saveNewProfile;
+window.showAddModal = window.showAddModal;
+window.setActive = window.setActive;
+window.deleteProfile = window.deleteProfile;
 
 init();
 </script>
